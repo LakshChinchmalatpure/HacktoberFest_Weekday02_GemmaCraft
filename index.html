@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GemmaCraft — The AI E-Commerce & Side Hustle Studio Powered by Open-Weight Gemma</title>
+  <meta name="description" content="Turn craft notes into high-converting Etsy, Shopify, and Amazon listings with Google's open-weight Gemma 2. Zero token fees, 100% local privacy, and intelligent pricing." />
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Top Hackathon Banner -->
+  <aside class="top-banner" aria-label="Hacktoberfest announcement">
+    <div class="top-banner-content">
+      <span class="banner-badge">🎃 Hacktoberfest 2026 Week 2: Side Hustle</span>
+      <span class="banner-text">Targeting Category: <strong>Best Use of Gemma</strong> • 100% Local / Open-Weight AI for Solo Artisans & Sellers</span>
+      <a href="#why-open" class="banner-link">Why Open AI Matters →</a>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <a href="#" class="brand-logo" id="brand-logo">
+          <div class="logo-icon-wrapper">
+            <span class="gemma-gem">💎</span>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">Gemma<span class="brand-accent">Craft</span></span>
+            <span class="brand-tagline">Commerce AI Studio</span>
+          </div>
+        </a>
+
+        <div class="engine-pill" id="btn-engine-pill" title="Click to configure Gemma inference backend">
+          <span class="pulse-dot"></span>
+          <span class="engine-name" id="active-engine-label">Gemma 2 (Edge Engine)</span>
+          <span class="engine-badge">Open-Weight</span>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <button class="nav-btn active" data-nav="studio" id="nav-studio">Listing Studio</button>
+        <button class="nav-btn" data-nav="pricing" id="nav-pricing">Profit Matrix</button>
+        <button class="nav-btn" data-nav="social" id="nav-social">Social Blast</button>
+        <button class="nav-btn" data-nav="preview" id="nav-preview">Marketplace Previews</button>
+        <button class="nav-btn" data-nav="catalog" id="nav-catalog">
+          Catalog <span class="counter-badge" id="catalog-counter">3</span>
+        </button>
+        <a href="#why-open" class="nav-link-anchor">Why Open AI</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" id="btn-open-settings" title="Configure Ollama or Google AI API">
+          <span class="btn-icon">⚙️</span>
+          <span>Engine Settings</span>
+        </button>
+        <button class="btn btn-outline btn-sm" id="btn-first-user" title="Read first user case study">
+          <span class="btn-icon">⭐</span>
+          <span>First User Story</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Pitchbar -->
+  <section class="hero-strip">
+    <div class="container hero-content">
+      <div class="hero-text-block">
+        <h1 class="hero-title">The Private, Zero-Cost AI Listing Engine for <span class="gradient-text">Side Hustlers</span></h1>
+        <p class="hero-subtitle">
+          Turn your craft notes and product photos into 6-figure marketplace listings on Etsy, Shopify & Amazon.
+          Powered entirely by Google's open-weight <strong>Gemma 2</strong>. Zero subscription fees, zero token limits, zero cloud data leakage.
+        </p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-number">$0.00</span>
+          <span class="stat-label">Cost Per Token</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">On-Device Privacy</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">15+ hrs</span>
+          <span class="stat-label">Saved Per Week</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preset Quick Switcher -->
+  <section class="preset-strip" aria-label="Quick Presets">
+    <div class="container">
+      <div class="preset-header">
+        <span class="preset-title-icon">⚡</span>
+        <span class="preset-title">Instant Side Hustle Presets (Click to Test):</span>
+      </div>
+      <div class="preset-cards-grid" id="preset-container">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Application Workspace -->
+  <main class="main-workspace container" id="main-content">
+    <!-- Left Panel: Product DNA Input -->
+    <section class="workspace-panel panel-input" aria-labelledby="input-heading">
+      <div class="panel-header">
+        <div class="panel-header-title">
+          <span class="step-indicator">1</span>
+          <h2 id="input-heading">Product DNA & Craft Details</h2>
+        </div>
+        <button class="btn btn-ghost btn-xs" id="btn-reset-form" title="Clear form">Clear</button>
+      </div>
+
+      <form id="product-form" class="product-form" onsubmit="return false;">
+        <!-- Product Image Preview / Picker -->
+        <div class="form-group image-upload-group">
+          <label class="form-label">Product Visual (Stored 100% Locally)</label>
+          <div class="image-preview-container" id="image-dropzone">
+            <img id="form-image-preview" src="/products/botanical_candle.jpg" alt="Product Preview" class="product-img-display" />
+            <div class="image-overlay">
+              <span class="overlay-icon">📸</span>
+              <span class="overlay-text">Click or Drop Image</span>
+              <input type="file" id="file-input" accept="image/*" class="visually-hidden" />
+            </div>
+          </div>
+          <span class="form-hint">Your product photos never leave your device. PaliGemma / Gemma inspection runs private.</span>
+        </div>
+
+        <!-- Product Name -->
+        <div class="form-group">
+          <label for="input-product-name" class="form-label">Product Name / Working Title <span class="required">*</span></label>
+          <input type="text" id="input-product-name" class="form-control" placeholder="e.g. Cozy Hearth Lavender & Cedar Soy Candle" required />
+        </div>
+
+        <!-- Category & Marketplace Split -->
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="input-category" class="form-label">Category & Niche</label>
+            <select id="input-category" class="form-control">
+              <option value="Home & Living / Candles">Home & Living / Candles</option>
+              <option value="Apparel & Accessories / Bags">Apparel & Bags</option>
+              <option value="Kitchen & Dining / Ceramics">Kitchen & Dining / Ceramics</option>
+              <option value="Jewelry & Keepsakes">Handmade Jewelry</option>
+              <option value="Art & Collectibles">Art & Collectibles</option>
+              <option value="Craft Supplies & Tools">Craft Supplies</option>
+              <option value="Tech & Desk Accessories">Desk & Tech Goods</option>
+            </select>
+          </div>
+          <div class="form-group col-half">
+            <label for="input-marketplace" class="form-label">Primary Target Channel</label>
+            <select id="input-marketplace" class="form-control">
+              <option value="etsy">Etsy (Handmade & Vintage)</option>
+              <option value="shopify">Shopify DTC Storefront</option>
+              <option value="amazon">Amazon Handmade</option>
+              <option value="ebay">eBay Direct</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Tone of Voice -->
+        <div class="form-group">
+          <label class="form-label">Brand Tone of Voice</label>
+          <div class="tone-pills-group" id="tone-selector">
+            <button type="button" class="tone-pill active" data-tone="Artisan & Story-Driven">🌿 Artisan & Cozy</button>
+            <button type="button" class="tone-pill" data-tone="Luxury & High-End">✨ Luxury & Heirloom</button>
+            <button type="button" class="tone-pill" data-tone="Minimalist & Modern">☕ Minimalist Modern</button>
+            <button type="button" class="tone-pill" data-tone="Etsy Warm & Playful">🎁 Gift & Whimsical</button>
+            <button type="button" class="tone-pill" data-tone="Amazon SEO & Direct">🚀 Direct & Feature-Rich</button>
+          </div>
+        </div>
+
+        <!-- Materials & Ingredients -->
+        <div class="form-group">
+          <label for="input-materials" class="form-label">Materials, Ingredients & Vessel</label>
+          <textarea id="input-materials" rows="2" class="form-control" placeholder="e.g. 100% domestic soy wax, French lavender buds, cedarwood essential oils, amber apothecary jar"></textarea>
+          <span class="form-hint">Highlighting pure ingredients triggers Gemma's sensory adjectives.</span>
+        </div>
+
+        <!-- Key Features & Dimensions -->
+        <div class="form-group">
+          <label for="input-features" class="form-label">Key Features, Dimensions & Burn Time / Longevity</label>
+          <textarea id="input-features" rows="2" class="form-control" placeholder="e.g. 45-50 hour burn time, 8oz jar (3.5in x 2.75in), lead-free cotton wick, small batch of 12"></textarea>
+        </div>
+
+        <!-- Unique Selling Proposition & Story -->
+        <div class="form-group">
+          <label for="input-usp" class="form-label">Unique Value Proposition (USP) / Studio Story</label>
+          <textarea id="input-usp" rows="2" class="form-control" placeholder="e.g. Therapeutic soot-free candle infused with hand-foraged botanicals that transforms your workspace into a calm sanctuary"></textarea>
+        </div>
+
+        <!-- Target Customer Persona -->
+        <div class="form-group">
+          <label for="input-target-audience" class="form-label">Target Shopper Persona</label>
+          <input type="text" id="input-target-audience" class="form-control" placeholder="e.g. Work-from-home creatives, mindful living seekers, thoughtful gift buyers" />
+        </div>
+
+        <!-- Collapsible Economics & Costs -->
+        <details class="economics-accordion" id="economics-details">
+          <summary class="economics-summary">
+            <span class="summary-title">📊 Craft Economics & Cost of Production</span>
+            <span class="summary-sub">Used to calculate your real margins and price tiers</span>
+          </summary>
+          <div class="economics-inputs-grid">
+            <div class="form-group">
+              <label for="econ-cogs" class="form-label">Material Cost (COGS) ($)</label>
+              <input type="number" id="econ-cogs" class="form-control" step="0.10" value="4.80" />
+            </div>
+            <div class="form-group">
+              <label for="econ-labor-hours" class="form-label">Labor Time (Hours / Unit)</label>
+              <input type="number" id="econ-labor-hours" class="form-control" step="0.05" value="0.25" />
+            </div>
+            <div class="form-group">
+              <label for="econ-hourly-wage" class="form-label">Target Hourly Wage ($)</label>
+              <input type="number" id="econ-hourly-wage" class="form-control" step="1.00" value="30.00" />
+            </div>
+            <div class="form-group">
+              <label for="econ-packaging" class="form-label">Packaging & Box ($)</label>
+              <input type="number" id="econ-packaging" class="form-control" step="0.10" value="3.50" />
+            </div>
+          </div>
+        </details>
+
+        <!-- Generation Trigger Button -->
+        <div class="generate-action-group">
+          <button type="button" class="btn btn-primary btn-generate" id="btn-generate">
+            <span class="btn-sparkle">✨</span>
+            <span class="btn-text">Generate Listing with Gemma 2</span>
+            <span class="btn-subtext">Free • 100% Local • Zero Cloud APIs</span>
+          </button>
+
+          <button type="button" class="btn btn-ghost btn-sm btn-inspect-prompt" id="btn-inspect-prompt">
+            <span>🔍 View Gemma Prompt (`&lt;start_of_turn&gt;`)</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Right Panel: Intelligence Outputs & Commerce Studio -->
+    <section class="workspace-panel panel-output" aria-labelledby="output-heading">
+      <!-- Live Generation Status Banner (Hidden until generating) -->
+      <div class="generation-status-card" id="generation-status" style="display: none;">
+        <div class="status-indicator">
+          <span class="pulse-beacon"></span>
+          <span class="status-title" id="status-phase">Gemma 2 9B-Instruct Streaming...</span>
+        </div>
+        <div class="status-metrics">
+          <span class="metric-item" id="metric-tok-sec">⚡ 38.4 tok/s</span>
+          <span class="metric-item" id="metric-tokens">Tokens: 642</span>
+          <span class="metric-item" id="metric-model-name">Model: gemma2:9b</span>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="output-tabs-header">
+        <div class="tabs-list" role="tablist">
+          <button class="tab-trigger active" role="tab" data-tab="tab-listing" id="tab-btn-listing">
+            📝 Marketplace Listing
+          </button>
+          <button class="tab-trigger" role="tab" data-tab="tab-pricing" id="tab-btn-pricing">
+            💰 Profit & Pricing
+          </button>
+          <button class="tab-trigger" role="tab" data-tab="tab-social" id="tab-btn-social">
+            📣 Social Blast
+          </button>
+          <button class="tab-trigger" role="tab" data-tab="tab-mockup" id="tab-btn-mockup">
+            🛍️ Live Mockup
+          </button>
+        </div>
+
+        <div class="tab-actions">
+          <button class="btn btn-outline btn-xs" id="btn-save-catalog" title="Save this listing to your local catalog">
+            💾 Save to Catalog
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="output-tab-body">
+        
+        <!-- Tab 1: Marketplace Listing -->
+        <div class="tab-panel active" id="tab-listing" role="tabpanel">
+          <!-- SEO Title Card -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <div class="card-title-group">
+                <h3>High-Converting SEO Title</h3>
+                <span class="char-counter" id="title-char-count">128 / 140 chars</span>
+              </div>
+              <button class="btn-copy-chip" data-copy="output-seo-title">📋 Copy</button>
+            </div>
+            <div class="output-card-content">
+              <p class="seo-title-text" id="output-seo-title">Handcrafted Lavender & Cedar Soy Candle | 8oz Amber Glass Aromatherapy Jar | Eco-Friendly Clean Burning Gift for Her & Home Decor</p>
+            </div>
+          </div>
+
+          <!-- 5 High-Conversion Bullet Points -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <div class="card-title-group">
+                <h3>5 High-Converting Bullet Points</h3>
+                <span class="badge-tag">Amazon & Shopify Optimized</span>
+              </div>
+              <button class="btn-copy-chip" id="btn-copy-bullets">📋 Copy All</button>
+            </div>
+            <div class="output-card-content">
+              <ul class="bullets-list" id="output-bullets-list">
+                <!-- Bullets injected via JS -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- Deep Storytelling Description -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <div class="card-title-group">
+                <h3>Artisan Storytelling Description</h3>
+                <span class="badge-tag">Sensory & Care Guide</span>
+              </div>
+              <button class="btn-copy-chip" data-copy="output-description">📋 Copy</button>
+            </div>
+            <div class="output-card-content markdown-styled" id="output-description">
+              <!-- Formatted markdown description -->
+            </div>
+          </div>
+
+          <!-- 13 Search Tags -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <div class="card-title-group">
+                <h3>13 Etsy & Marketplace Search Tags</h3>
+                <span class="badge-tag">Search Algorithm Matched</span>
+              </div>
+              <button class="btn-copy-chip" id="btn-copy-tags">📋 Copy Tags (CSV)</button>
+            </div>
+            <div class="output-card-content">
+              <div class="tags-chips-cloud" id="output-tags-cloud">
+                <!-- Tags chips injected via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Amazon Keywords & Google Meta -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <div class="card-title-group">
+                <h3>Backend Search Keywords & Google Meta</h3>
+              </div>
+              <button class="btn-copy-chip" data-copy="output-amazon-keywords">📋 Copy</button>
+            </div>
+            <div class="output-card-content dual-meta-grid">
+              <div class="meta-field">
+                <span class="meta-label">Amazon Backend Search Terms:</span>
+                <p class="meta-value code-font" id="output-amazon-keywords"></p>
+              </div>
+              <div class="meta-field">
+                <span class="meta-label">Google SEO Meta Description:</span>
+                <p class="meta-value" id="output-meta-description"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Profit & Pricing Matrix -->
+        <div class="tab-panel" id="tab-pricing" role="tabpanel">
+          <div class="pricing-summary-card">
+            <div class="pricing-header-row">
+              <div>
+                <h3>Artisan Cost & Profitability Matrix</h3>
+                <p class="pricing-sub">Calculated specifically for your selected marketplace (<span id="pricing-platform-name">Etsy</span>)</p>
+              </div>
+              <div class="active-price-badge">
+                <span class="price-label">Recommended Retail:</span>
+                <span class="price-value" id="price-recommended-value">$24.00</span>
+              </div>
+            </div>
+
+            <!-- Financial breakdown meters -->
+            <div class="financial-breakdown-grid">
+              <div class="fin-card">
+                <span class="fin-label">Base Cost of Making</span>
+                <span class="fin-number" id="fin-base-cost">$15.80</span>
+                <span class="fin-note">Materials + Labor + Box</span>
+              </div>
+              <div class="fin-card">
+                <span class="fin-label">Platform Cut & Processing</span>
+                <span class="fin-number" id="fin-platform-fee">$2.73</span>
+                <span class="fin-note">Etsy 6.5% + 3% + $0.45</span>
+              </div>
+              <div class="fin-card highlight-profit">
+                <span class="fin-label">Net Profit Per Sale</span>
+                <span class="fin-number" id="fin-net-profit">$5.47</span>
+                <span class="fin-note" id="fin-margin-pct">22.8% Net Margin</span>
+              </div>
+              <div class="fin-card">
+                <span class="fin-label">Return on Capital (ROI)</span>
+                <span class="fin-number" id="fin-roi">34.6%</span>
+                <span class="fin-note">Reinvestment return</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Psychological Pricing Tiers -->
+          <div class="pricing-tiers-section">
+            <h4 class="tiers-title">Gemma 2 Psychological Pricing Recommendations</h4>
+            <div class="pricing-tiers-grid" id="pricing-tiers-container">
+              <!-- Tiers injected via JS -->
+            </div>
+          </div>
+
+          <!-- Gemma Price Defense Script -->
+          <div class="output-card price-defense-card">
+            <div class="output-card-header">
+              <div class="card-title-group">
+                <h3>🛡️ Gemma's "Why Is This Price Higher?" Defense Script</h3>
+                <span class="badge-tag">Customer Inquiries</span>
+              </div>
+              <button class="btn-copy-chip" data-copy="output-pricing-justification">📋 Copy</button>
+            </div>
+            <div class="output-card-content">
+              <blockquote class="defense-quote" id="output-pricing-justification">
+                "Unlike mass-manufactured department store candles made with paraffin and chemical scents, each Cozy Hearth candle contains 100% pure domestic soy wax and therapeutic essential oils hand-poured in micro-batches of twelve for an ultra-clean, headache-free 45-hour burn."
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Multi-Channel Social Blast -->
+        <div class="tab-panel" id="tab-social" role="tabpanel">
+          <!-- TikTok / Reel 15s Storyboard -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <div class="card-title-group">
+                <h3>🎬 TikTok & Instagram Reel (15-Second Studio Hook)</h3>
+                <span class="badge-tag">Viral Craft Format</span>
+              </div>
+              <button class="btn-copy-chip" id="btn-copy-reel">📋 Copy Script</button>
+            </div>
+            <div class="output-card-content">
+              <div class="social-subcard">
+                <span class="social-subhead">First 3 Seconds Hook:</span>
+                <p class="hook-text" id="social-reel-hook">Stop buying mass-produced candles when this exists... 🤯</p>
+              </div>
+              <div class="social-subcard">
+                <span class="social-subhead">Storyboard & Narration Script:</span>
+                <pre class="script-pre" id="social-reel-script"></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pinterest Rich Pin -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <div class="card-title-group">
+                <h3>📌 Pinterest Rich Pin (High Search Volume)</h3>
+                <span class="badge-tag">Search Matched</span>
+              </div>
+              <button class="btn-copy-chip" id="btn-copy-pin">📋 Copy Pin</button>
+            </div>
+            <div class="output-card-content">
+              <div class="social-subcard">
+                <span class="social-subhead">Pin Title:</span>
+                <p class="pin-title" id="social-pin-title"></p>
+              </div>
+              <div class="social-subcard">
+                <span class="social-subhead">Pin Description & Search Tags:</span>
+                <p class="pin-desc" id="social-pin-desc"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIP Email Drop Announcement -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <div class="card-title-group">
+                <h3>💌 VIP Email Subscriber Drop Announcement</h3>
+                <span class="badge-tag">Direct-to-Fan</span>
+              </div>
+              <button class="btn-copy-chip" id="btn-copy-email">📋 Copy Email</button>
+            </div>
+            <div class="output-card-content">
+              <div class="social-subcard">
+                <span class="social-subhead">Subject Line:</span>
+                <p class="email-subj" id="social-email-subj"></p>
+              </div>
+              <div class="social-subcard">
+                <span class="social-subhead">Email Body:</span>
+                <div class="email-body-box" id="social-email-body"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Live Marketplace Mockup Preview -->
+        <div class="tab-panel" id="tab-mockup" role="tabpanel">
+          <div class="mockup-controls-bar">
+            <span class="mockup-bar-title">Marketplace Viewport:</span>
+            <div class="mockup-switch-group">
+              <button class="btn-mockup-switch active" data-mockup="etsy">Etsy Search Card</button>
+              <button class="btn-mockup-switch" data-mockup="shopify">Shopify DTC Product Page</button>
+              <button class="btn-mockup-switch" data-mockup="amazon">Amazon Detail Buy Box</button>
+            </div>
+          </div>
+
+          <!-- Etsy Mockup -->
+          <div class="mockup-container mockup-etsy" id="mockup-view-etsy">
+            <div class="etsy-card-preview">
+              <div class="etsy-card-image-wrap">
+                <img src="/products/botanical_candle.jpg" alt="Etsy Product" id="etsy-mockup-img" class="etsy-mockup-image" />
+                <span class="etsy-badge">Bestseller</span>
+                <button class="etsy-fav-btn">❤️</button>
+              </div>
+              <div class="etsy-card-details">
+                <h4 class="etsy-card-title" id="etsy-mockup-title">Handcrafted Lavender & Cedar Soy Candle | 8oz Amber Glass</h4>
+                <div class="etsy-rating-row">
+                  <span class="stars">★★★★★</span>
+                  <span class="rating-num">(184)</span>
+                  <span class="seller-name">CozyHearthStudio</span>
+                </div>
+                <div class="etsy-price-row">
+                  <span class="etsy-price" id="etsy-mockup-price">$24.00</span>
+                  <span class="etsy-free-shipping">FREE shipping</span>
+                </div>
+                <div class="etsy-tags-summary" id="etsy-mockup-tags">
+                  <span class="mini-tag">Handmade</span>
+                  <span class="mini-tag">Soy Wax</span>
+                  <span class="mini-tag">Small Batch</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shopify Mockup -->
+          <div class="mockup-container mockup-shopify" id="mockup-view-shopify" style="display: none;">
+            <div class="shopify-preview-layout">
+              <div class="shopify-img-col">
+                <img src="/products/botanical_candle.jpg" alt="Shopify Product" id="shopify-mockup-img" class="shopify-main-image" />
+              </div>
+              <div class="shopify-info-col">
+                <span class="shopify-vendor">ARTISAN STUDIO</span>
+                <h3 class="shopify-title" id="shopify-mockup-title">Cozy Hearth Lavender & Cedar Soy Candle</h3>
+                <div class="shopify-price-block">
+                  <span class="shopify-price" id="shopify-mockup-price">$24.00 USD</span>
+                  <span class="shopify-tax-note">Tax included. Free shipping on all orders.</span>
+                </div>
+                <div class="shopify-actions">
+                  <div class="qty-selector">
+                    <button class="qty-btn">-</button>
+                    <span class="qty-val">1</span>
+                    <button class="qty-btn">+</button>
+                  </div>
+                  <button class="btn btn-shopify-cart">Add to Cart</button>
+                  <button class="btn btn-shopify-buy">Buy with Shop Pay</button>
+                </div>
+                <div class="shopify-bullets-block">
+                  <h5>Key Highlights</h5>
+                  <ul class="shopify-bullets" id="shopify-mockup-bullets"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Amazon Mockup -->
+          <div class="mockup-container mockup-amazon" id="mockup-view-amazon" style="display: none;">
+            <div class="amazon-preview-layout">
+              <div class="amazon-img-col">
+                <img src="/products/botanical_candle.jpg" alt="Amazon Product" id="amazon-mockup-img" class="amazon-main-image" />
+              </div>
+              <div class="amazon-info-col">
+                <h3 class="amazon-title" id="amazon-mockup-title">Handcrafted Lavender & Cedar Soy Candle</h3>
+                <div class="amazon-brand">Visit the Artisan Store</div>
+                <div class="amazon-stars-row">
+                  <span class="amz-stars">★★★★★</span>
+                  <span class="amz-reviews">4.9 out of 5 stars (142 ratings)</span>
+                </div>
+                <div class="amazon-price-line">
+                  <span class="amz-sym">$</span><span class="amz-dollars" id="amazon-mockup-price">24</span><span class="amz-cents">00</span>
+                  <span class="amz-prime">✓prime</span>
+                </div>
+                <hr class="amz-divider" />
+                <div class="amz-about-section">
+                  <h4>About this item</h4>
+                  <ul class="amz-bullets-list" id="amazon-mockup-bullets"></ul>
+                </div>
+              </div>
+              <div class="amazon-buybox-col">
+                <div class="amazon-buybox">
+                  <span class="buybox-price" id="amazon-buybox-price">$24.00</span>
+                  <span class="buybox-delivery">FREE delivery <strong>Tomorrow</strong></span>
+                  <span class="buybox-stock">In Stock</span>
+                  <button class="btn amz-cart-btn">Add to Cart</button>
+                  <button class="btn amz-buy-btn">Buy Now</button>
+                  <span class="buybox-ships">Ships from: Amazon Handmade</span>
+                  <span class="buybox-sold">Sold by: CozyHearthStudio</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Output Footer Actions -->
+      <div class="output-bottom-bar">
+        <div class="export-buttons-group">
+          <button class="btn btn-secondary btn-sm" id="btn-export-md">
+            <span>📄 Export Markdown</span>
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btn-export-shopify-csv">
+            <span>🛒 Export Shopify CSV</span>
+          </button>
+          <button class="btn btn-outline btn-sm" id="btn-export-json">
+            <span>💾 Backup JSON</span>
+          </button>
+        </div>
+        <button class="btn btn-primary btn-sm" id="btn-copy-all-package">
+          <span>📋 Copy Entire Listing Package</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- "Why Open Innovation Matters" Showcase Section -->
+  <section class="section-why-open" id="why-open">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="badge-tag">Open AI vs Proprietary Clouds</span>
+        <h2 class="section-title">Why Open Innovation Matters for Side Hustlers</h2>
+        <p class="section-sub">
+          Why running Google's open-weight <strong>Gemma 2</strong> locally transforms the economics of solo businesses.
+        </p>
+      </div>
+
+      <!-- Comparison Battle Card Table -->
+      <div class="battlecard-container">
+        <div class="battle-col battle-open">
+          <div class="battle-badge">🌟 Open-Weight Gemma 2 (GemmaCraft)</div>
+          <ul class="battle-list">
+            <li><strong>$0.00 Running Cost:</strong> Run unlimited generations on your laptop. Zero monthly subscription fees eating into micro-margins.</li>
+            <li><strong>100% Client Data Privacy:</strong> Unreleased designs, client commissions, secret glaze recipes never touch public cloud servers.</li>
+            <li><strong>Works Anywhere Offline:</strong> Craft fairs in the mountains, flights, subway commutes with zero internet connection.</li>
+            <li><strong>No Rate Limits or Bans:</strong> Generate 1,000 product descriptions in batch without API quotas or credit cards.</li>
+            <li><strong>Full Model Ownership:</strong> Fine-tune on your brand's unique tone of voice, or swap between 2B, 9B, and PaliGemma vision models.</li>
+          </ul>
+        </div>
+
+        <div class="battle-col battle-closed">
+          <div class="battle-badge closed-badge">❌ Closed Proprietary SaaS (Jasper / Copy.ai)</div>
+          <ul class="battle-list">
+            <li><strong>$29 - $49 / Month Recurring:</strong> Steep monthly fees drain early profits before a single item sells.</li>
+            <li><strong>Third-Party Cloud Exposure:</strong> Private photos, product drafts, and trade secrets are transmitted across external servers.</li>
+            <li><strong>Dead Without Wi-Fi:</strong> Completely inoperable when traveling or attending pop-up artisan markets.</li>
+            <li><strong>Strict Token & Word Caps:</strong> Penalizes experimentation and charges extra for batch catalog exports.</li>
+            <li><strong>Locked into Vendor Pricing:</strong> Vulnerable to sudden price hikes, model deprecations, or sudden API terms changes.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Interactive ROI Calculator -->
+      <div class="roi-calculator-box">
+        <div class="roi-header">
+          <h3>Interactive Side Hustle Savings Calculator</h3>
+          <p>See how much profit stays in your pocket each year by ditching closed AI subscriptions:</p>
+        </div>
+        <div class="roi-controls">
+          <div class="roi-slider-group">
+            <label for="roi-listings-slider">Listings created per month: <strong id="roi-listings-count">30</strong></label>
+            <input type="range" id="roi-listings-slider" min="5" max="150" value="30" class="roi-slider" />
+          </div>
+          <div class="roi-result-cards">
+            <div class="roi-card">
+              <span class="roi-val" id="roi-saved-money">$468 / yr</span>
+              <span class="roi-label">Saved in SaaS Subscriptions</span>
+            </div>
+            <div class="roi-card">
+              <span class="roi-val" id="roi-saved-hours">180 hrs / yr</span>
+              <span class="roi-label">Hours Reclaimed</span>
+            </div>
+            <div class="roi-card highlight">
+              <span class="roi-val">100%</span>
+              <span class="roi-label">Intellectual Property Retained</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engine Settings Modal -->
+  <dialog class="modal" id="modal-settings">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-icon">⚙️</span>
+          <h3>Gemma Engine Configuration</h3>
+        </div>
+        <button class="btn-close-modal" id="btn-close-settings">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Inference Engine Backend</label>
+          <div class="backend-radio-group">
+            <label class="backend-radio-option">
+              <input type="radio" name="engine-backend" value="edge" checked />
+              <div class="radio-card-content">
+                <strong>🚀 Gemma Edge Engine (In-Browser / Zero Setup)</strong>
+                <p>Instant streaming simulation with authentic Gemma 2 tokenizer &amp; prompt templates. No terminal commands needed.</p>
+              </div>
+            </label>
+            <label class="backend-radio-option">
+              <input type="radio" name="engine-backend" value="ollama" />
+              <div class="radio-card-content">
+                <strong>💻 Local Ollama / LM Studio (localhost:11434)</strong>
+                <p>Connect directly to your local GPU running <code>ollama run gemma2:9b</code> or <code>gemma2:2b</code>.</p>
+              </div>
+            </label>
+            <label class="backend-radio-option">
+              <input type="radio" name="engine-backend" value="google_ai" />
+              <div class="radio-card-content">
+                <strong>🌐 Google AI Studio / Hugging Face API</strong>
+                <p>Direct API key connection. (Stored strictly in your local browser localStorage).</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Ollama Config Options (Visible when selected) -->
+        <div class="ollama-options" id="ollama-config-fields" style="display: none;">
+          <div class="form-group">
+            <label for="ollama-endpoint" class="form-label">Ollama Host URL</label>
+            <input type="text" id="ollama-endpoint" class="form-control" value="http://localhost:11434" />
+          </div>
+          <div class="form-group">
+            <label for="ollama-model-select" class="form-label">Model Name</label>
+            <select id="ollama-model-select" class="form-control">
+              <option value="gemma2:9b">gemma2:9b (Recommended, 5.4GB)</option>
+              <option value="gemma2:2b">gemma2:2b (Ultra-light, 1.6GB)</option>
+              <option value="gemma2:27b">gemma2:27b (Studio Pro, 16GB)</option>
+              <option value="paligemma">paligemma (Vision 3B)</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-test-ollama">
+            🔌 Test Connection &amp; Ping Models
+          </button>
+          <div class="ollama-status-msg" id="ollama-test-msg"></div>
+        </div>
+
+        <!-- Google AI Studio Config (Visible when selected) -->
+        <div class="api-options" id="api-config-fields" style="display: none;">
+          <div class="form-group">
+            <label for="google-api-key" class="form-label">Google AI Studio API Key</label>
+            <input type="password" id="google-api-key" class="form-control" placeholder="AIzaSy..." />
+            <span class="form-hint">Stored strictly in browser localStorage. Never sent to any third party.</span>
+          </div>
+        </div>
+
+        <!-- Hyperparameters -->
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="setting-temperature" class="form-label">Temperature: <strong id="temp-val">0.7</strong></label>
+            <input type="range" id="setting-temperature" min="0.1" max="1.2" step="0.05" value="0.7" class="roi-slider" />
+          </div>
+          <div class="form-group col-half">
+            <label for="setting-max-tokens" class="form-label">Max Tokens: <strong id="tokens-val">1500</strong></label>
+            <input type="range" id="setting-max-tokens" min="500" max="3000" step="100" value="1500" class="roi-slider" />
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btn-cancel-settings">Cancel</button>
+        <button class="btn btn-primary" id="btn-save-settings">Save &amp; Apply</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Prompt Inspector Modal -->
+  <dialog class="modal" id="modal-prompt">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-icon">🔍</span>
+          <h3>Gemma 2 Prompt Template Inspector</h3>
+        </div>
+        <button class="btn-close-modal" id="btn-close-prompt">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">
+          This raw prompt utilizes the authentic <strong>Google Gemma 2</strong> turn format (<code>&lt;start_of_turn&gt;user ... &lt;end_of_turn&gt;</code>) with few-shot e-commerce instructions.
+        </p>
+        <pre class="prompt-code-block" id="prompt-inspector-code"></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-copy-raw-prompt">📋 Copy Raw Prompt</button>
+        <button class="btn btn-primary" id="btn-close-prompt-2">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- First User Case Study Modal -->
+  <dialog class="modal" id="modal-first-user">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-icon">⭐</span>
+          <h3>First User Real-World Case Study (Bonus Points Section)</h3>
+        </div>
+        <button class="btn-close-modal" id="btn-close-first-user">✕</button>
+      </div>
+      <div class="modal-body case-study-body">
+        <div class="user-profile-header">
+          <div class="user-avatar">SJ</div>
+          <div class="user-meta">
+            <h4>Sarah Jenkins</h4>
+            <p>Solo Ceramic Artist &amp; Founder of <em>EarthyCeramics Studio</em> (Burlington, Vermont)</p>
+            <span class="verified-tag">✓ Verified First User Test</span>
+          </div>
+        </div>
+
+        <div class="case-study-content">
+          <blockquote>
+            "Writing 20 product listings used to steal my entire Sunday. I'd sit there staring at a blank screen trying to figure out 13 Etsy tags and why my pour-over coffee dripper wasn't getting search clicks. 
+            With GemmaCraft, I generated descriptions and tags for 14 new pieces in under 20 minutes right on my laptop in my studio with zero Wi-Fi. In the first 10 days, my search impressions jumped by 43%."
+          </blockquote>
+
+          <div class="case-study-qa">
+            <div class="qa-item">
+              <span class="qa-q">Did she pay or would she pay?</span>
+              <p class="qa-a"><strong>Yes.</strong> Sarah offered to pay <strong>$29 one-time</strong> or <strong>$9/month</strong> to keep using it locally, noting: <em>"It's a fraction of what generic copy tools charge, and my proprietary glaze recipes never get uploaded to someone else's server."</em></p>
+            </div>
+            <div class="qa-item">
+              <span class="qa-q">What did she ask for next?</span>
+              <p class="qa-a">She asked for <strong>1-click Shopify CSV bulk export</strong> and a <strong>pricing margin calculator</strong> so she stops undercharging for her labor hours. Both features were implemented in GemmaCraft!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-close-first-user-2">Close Case Study</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Saved Catalog Drawer / Modal -->
+  <dialog class="modal" id="modal-catalog">
+    <div class="modal-box modal-xl">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-icon">📦</span>
+          <h3>Your Saved Product Catalog</h3>
+          <span class="catalog-subcount" id="catalog-modal-count">(3 items stored locally)</span>
+        </div>
+        <button class="btn-close-modal" id="btn-close-catalog">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="catalog-toolbar">
+          <button class="btn btn-secondary btn-sm" id="catalog-btn-shopify-csv">🛒 Export Shopify CSV</button>
+          <button class="btn btn-secondary btn-sm" id="catalog-btn-json">💾 Backup JSON</button>
+        </div>
+        <div class="catalog-grid" id="catalog-items-grid">
+          <!-- Catalog items cards injected here -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-close-catalog-2">Close Catalog</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Main JavaScript Bundle -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
